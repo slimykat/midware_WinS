@@ -80,14 +80,15 @@ class D(daemon):
             
         	thd = threading.Thread(
                 target=winsq.bulk_query, 
-                args=(self.config["winserver_probe"], self.out_Dirt),
+                args=(self.config["winserver_probe"], self.out_Dirt)
             )
+            
             try:
-            	thd.start()
+                thd.start()
             except:
-            	logging.exception("MAIN.D.run:Error_while_query")
+                logging.exception("MAIN.D.run:Error_while_query")
                 sys.exit(1)
-            """
+            """            
             try:
                 winsq.bulk_query(self.config["winserver_probe"], self.out_Dir)
             except:
