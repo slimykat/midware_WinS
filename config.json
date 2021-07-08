@@ -1,0 +1,11 @@
+{
+	"wins_probe":{
+		"probe_name_idx": [0,2],
+		"probe_attr_idx": [1],
+		"probe_time_idx": 4,
+		"title_time_format": "%Y%m%d_%H_%M",
+		"data_time_format": "%Y%m%d_%H:%M:%S",
+		"header":["index_name", "value", "process_name", "probe_server", "datetime"],
+		"probe_server_idx":2
+	}
+}
