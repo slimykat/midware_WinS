@@ -1,4 +1,3 @@
-#from 
 import json, os, sys, atexit, threading
 import datetime, time
 import logging
@@ -100,26 +99,8 @@ class D(daemon):
             delta = datetime.timedelta(minutes=1) - datetime.timedelta(seconds=now.second, microseconds=now.microsecond)
             time.sleep(delta.total_seconds())
 
-
 if __name__ == "__main__":
-	
-
-	# for testing
-	const_header = ['Handles','NPM(K)','PM(K)','WS(K)','VM(M)','CPU(s)','Id','ProcessName']
-	Name_input = "notepad"
-
-	# test run
-	while(True):	# runs every 1 minute
-		try:
-			r = s.run_ps("Get-Process -Name *"+Name_input+"*")
-		except:
-			logging.exception("Error_while_query")
-			sys.exit(1)
-	
-	
-
-if __name__ == "__main__":
-	assert (2, 6) <= sys.version_info < (2, 8)
+    assert (2, 6) <= sys.version_info < (2, 8)
     main_path = os.path.realpath(__file__)
     prj_dir_path = os.path.dirname(main_path)
 
