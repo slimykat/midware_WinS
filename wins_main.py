@@ -75,25 +75,13 @@ class D(daemon):
             sys.exit(1)
         logging.warning("MAIN.D.run:UI_is_now_running")
 
-        while(True):    # runs every 1 minute
-            
-        	thd = threading.Thread(
-                target=winsq.bulk_query, 
-                args=(self.config["winserver_probe"], self.out_Dirt)
-            )
-            
-            try:
-                thd.start()
+        # loop runs every 1 minute
+        while(True):
+            thd = threading.Thread(target=winsq.bulk_query, args=(self.config["winserver_probe"], self.out_Dirt))
+            try:thd.start()
             except:
                 logging.exception("MAIN.D.run:Error_while_query")
                 sys.exit(1)
-            """            
-            try:
-                winsq.bulk_query(self.config["winserver_probe"], self.out_Dir)
-            except:
-                logging.exception("MAIN.D.run:Error_while_query")
-                sys.exit(1)
-            """
             # timer
             now = datetime.datetime.now()
             delta = datetime.timedelta(minutes=1) - datetime.timedelta(seconds=now.second, microseconds=now.microsecond)
