@@ -4,7 +4,7 @@ import sys, os, time, atexit, signal, logging
 def sigHandler(signo, frame):
     sys.exit(0)
 
-class daemon:
+class daemon():
     """A generic daemon class.
 
     Usage: subclass the daemon class and override the run() method."""
