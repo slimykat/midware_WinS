@@ -13,7 +13,7 @@ class D(daemon):
 
     def __init__(self, args):
         logging.debug("MAIN.D.__init__:start_init")
-        daemon.__init__()
+        daemon.__init__(self)
         self.pidfile = args.pidfile
         self.conf_Path = args.config
         self.out_Dir = args.out_Dir
