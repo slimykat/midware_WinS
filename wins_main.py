@@ -9,7 +9,7 @@ import wins_UI as winsui
 from daemonize import daemon
 
 
-class D(daemon,nullObj):
+class D(daemon):
 
     def __init__(self, args):
         logging.debug("MAIN.D.__init__:start_init")
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     parser.add_argument("-v", action="count", default=0, help='logging level')
 
     args = parser.parse_args()
-    APP = D(args,None)
+    APP = D(args)
     logging.debug("Start_with_command:"+args.command)
     if args.command == "daemon":
         APP.start()
