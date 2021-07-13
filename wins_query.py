@@ -9,7 +9,7 @@ _Password = ""
 def query(Name, TargetObject = []):
     if (not _session):
         logging.error("please log in")
-    r = _session.run_ps("Get-Process *" + Name + "* | Format-List " + " ".join(TargetObject))
+    r = _session.run_ps("Get-Process *" + Name + "* | Format-table " + ",".join(TargetObject))
     if r.std_err :
         logging.warning("wins_query.query:"+r.std_err)
     
@@ -27,7 +27,7 @@ def login(host="", user = "", password=""):
     if host :
         _Host = host
     if not _Host:
-        logging.error("zabbix_query.login:Missing_Host")
+        logging.error("wins_query.login:Missing_Host")
         sys.exit(0)
     if user:
         _User = user
@@ -38,7 +38,7 @@ def login(host="", user = "", password=""):
     try:
         _session = winrm.Session(_Host, auth=(_User, _Password))
     except Exception as exp:
-        logging.warning("zabbix_query.login:Login_failed:{}".format(exp))
+        logging.warning("wins_query.login:Login_failed:{}".format(exp))
         sys.exit(1)
 """
 def extend_lifetime():
@@ -59,18 +59,20 @@ def bulk_query(c, outpath):
 
     logging.debug("Start_query")
     # bulk query for each target
-    with open(outpath, "a+") as fp:
+    with open(outpath + "winserver_probe@" + now +".csv", "a+") as fp:
         writer = csv.writer(fp)
         payload = []
-        for name, ObjList in probe.items():
-            for line in query(name, TargetObject = ObjList):
-                payload.extend(line.split() + [name, server , now])
+        for keyword, ObjList in probe.items():
+            for line in query(keyword, TargetObject = ObjList):
+                if (line):
+                    for obj, value in list(zip(ObjList,line.split())):
+                        payload.append([value, obj, keyword, _Host , now])
         writer.writerows(payload)
 
     # record query time in logging level "info"
     t2 = datetime.datetime.now()
     spent = (t2-t).total_seconds()
-    logging.info("zabbix_query.bulk_query:Query_time_spent:"+str(spent)+"s")
+    logging.info("wins_query.bulk_query:Query_time_spent:"+str(spent)+"s")
 
 def get_namelist():
     return query("","*") # will return a list of names

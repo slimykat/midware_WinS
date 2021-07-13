@@ -68,7 +68,8 @@ class D(daemon):
         # Start ui thread
         try:
             winsui.app._config = self.config["winserver_probe"] # copy config
-            ui = threading.Thread(target=winsui.app.run, kwargs=winserver["UI_address"], daemon=True)
+            ui = threading.Thread(target=winsui.app.run, kwargs=winserver["UI_address"])
+            ui.setDaemon(True)
             ui.start()
         except:
             logging.exception("MAIN.D.run:UI_thread_error")
@@ -77,7 +78,7 @@ class D(daemon):
 
         # loop runs every 1 minute
         while(True):
-            thd = threading.Thread(target=winsq.bulk_query, args=(self.config["winserver_probe"], self.out_Dirt))
+            thd = threading.Thread(target=winsq.bulk_query, args=(self.config["winserver_probe"], self.out_Dir))
             try:thd.start()
             except:
                 logging.exception("MAIN.D.run:Error_while_query")
