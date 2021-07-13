@@ -9,10 +9,11 @@ def index():
     return(
             "winserver midware UI:\n"+
             "   index:\n"+
-            "[GET]      1. ip:port/zabbix/show\n"+
-            "[GET]      2. ip:port/zabbix/init\n"+
-            "[POST]     3. ip:port/zabbix/update\n"+
-            "[POST]     4. ip:port/zabbix/delete\n"
+            "[GET]      1. ip:port/show\n"+
+            "[GET]      2. ip:port/init\n"+
+            "[POST]     3. ip:port/update\n"+
+            "[POST]     4. ip:port/delete\n"+
+            "[GET]      5. ip:port/namelist"
         )
 
 @app.route('/show', methods=['GET'])
@@ -23,6 +24,10 @@ def show():
     else:
         return json.dumps(app._config,indent=4)
 
+@app.route('/namelist', methods=['GET'])
+def namelist():
+    return json.dumps(get_namelist())
+"""
 def merge(a, b, path=None):
     "merges b into a"
     if path is None: path = []
@@ -38,7 +43,7 @@ def merge(a, b, path=None):
         else:
             a[key] = b[key]
     return a
-
+"""
 @app.route("/reset", methods=['GET'])
 def reset():
     

@@ -75,7 +75,8 @@ def bulk_query(c, outpath):
     logging.info("wins_query.bulk_query:Query_time_spent:"+str(spent)+"s")
 
 def get_namelist():
-    return query("","*") # will return a list of names
+    List = query("",TargetObject = ["Name"]) # will return a list of names
+    return [l.replace(" ","") for l in List][:-3]
 
 ##################################################
 # the following functions are used for dev ->
