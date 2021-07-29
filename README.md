@@ -1,5 +1,5 @@
 # midware_WinS
-midware_WinS is a midware service designed to connect Osprey and powershell from a remote Windows Server.
+midware_WinS is a midware service that can connect Osprey AIPOs and powershell from a remote Windows Server.
 
 ## Components
 - midware_WinS/
@@ -101,8 +101,8 @@ Some information and functions can be accessed through a make by Flask:
 |---|---|---|---|
 |GET|p:port/show	|show all the available endpoints|	-|
 |GET|ip:port/reset 	|set the config to default| -|
-|POST|ip:port/update	|update config about a specific process|ProcessName,Targets(can have multiple)|
-|POST|ip:port/delete	|delete a process from the list in the config| "ProcessName"|
+|POST|ip:port/update	|update config about a specific process|ProcessName,</br>Targets(can have multiple)|
+|POST|ip:port/delete	|delete a process from the list in the config| ProcessName|
 |GET|ip:port/namelist 	|get a list of prcess from the monitored machine|-|
 
 
