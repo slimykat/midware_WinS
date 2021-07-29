@@ -1,4 +1,4 @@
-import json, os, requests, logging, csv, sys, datetime, threading
+import json, os, logging, csv, sys, datetime, threading
 import winrm
 
 _session = ""

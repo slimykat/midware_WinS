@@ -95,15 +95,15 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description='Connect to powershell on a remote Windows Server.',usage='%(prog)s [-h] [options] {start,stop,restart,daemon}')
     parser.add_argument('command', choices=["start","stop","restart","daemon"],
-        help='Instruction for the program')
-    parser.add_argument("-c","--config", metavar="path",
-        default=os.path.join(prj_dir_path,"midware.conf"), help='config file path')
-    parser.add_argument("-l","--log", metavar="path",
-        default=os.path.join(prj_dir_path,".midware.log"), help='log file path')
-    parser.add_argument("-o","--out_Dir", metavar="path",
-        default=os.path.join(prj_dir_path,"probe/"), help='output directory path')
-    parser.add_argument("-p","--pidfile", metavar="path",
-        default=os.path.join(prj_dir_path,".pidfile"), help='pidfile path')
+        help='Commands of this program')
+    parser.add_argument("-c","--config", metavar='\b',
+        default=os.path.join(prj_dir_path,"midware.conf"), help='change config file path')
+    parser.add_argument("-l","--log", metavar='\b',
+        default=os.path.join(prj_dir_path,".midware.log"), help='change log file path')
+    parser.add_argument("-o","--out_Dir", metavar='\b',
+        default=os.path.join(prj_dir_path,"probe/"), help='change output directory path')
+    parser.add_argument("-p","--pidfile", metavar='\b',
+        default=os.path.join(prj_dir_path,".pidfile"), help='change pidfile path')
     parser.add_argument("-v", action="count", default=0, help='logging level')
 
     args = parser.parse_args()
