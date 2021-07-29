@@ -1,4 +1,5 @@
 # midware_WinS
+midware_WinS is a midware service designed to connect Osprey and powershell from a remote Windows Server.
 
 ## Components
 - midware_WinS/
@@ -66,15 +67,42 @@ Running as a systemd service has several benefits, including :
 1. auto-load at boot-up
 2. auto-restart
 3. log handling
+### 3. Config setting
+```json
+{
+    "winserver": {
+        "host": "xxx.xxx.xxx.xxx", 
+        "password": "xxx", 
+        "user": "xxx", 
+        "UI_address": {
+            "host": "0.0.0.0", 
+            "port": 8882
+        }
+    }, 
+    "winserver_probe": {
+        "": ["Name", "CPU"]
+    }
+}
+```
+"winserver" entry contains the infomation of the monitored machine. It also defines the address of the program itself.</br>
+"winserver_probe" entry defines what information to get from powershell.
 
-### 3. endpoint UI
+	The entry name represent the key word of a process' name you wish to monitor.
+		Default value is "", meaning all the available process would be monitored.
+		The name could be a full name as well as key word of the process.
+	The list in the value determines what kind of data about the process would be aquired.
+		Default value is "Name" and "CPU".
+		For the whole list of available data, please refer to the [document](https://hackmd.io/@mcnlab538/HJ7JyKTpu#Available-data-about-a-process).
 
-    "winserver midware UI:\n"+
-    "   index:\n"+
-    "[GET]      1. ip:port/show\n"+
-    "[GET]      2. ip:port/init\n"+
-    "[POST]     3. ip:port/update\n"+
-    "[POST]     4. ip:port/delete\n"+
-    "[GET]      5. ip:port/namelist"
+### 4. UI endpoint
+Some information and functions can be accessed through a make by Flask:
+
+|Method|URL/endpoint|Description|Form attribute|
+|---|---|---|---|
+|GET|p:port/show	|show all the available endpoints|	-|
+|GET|ip:port/reset 	|set the config to default| -|
+|POST|ip:port/update	|update config about a specific process|ProcessName,Targets(can have multiple)|
+|POST|ip:port/delete	|delete a process from the list in the config| "ProcessName"|
+|GET|ip:port/namelist 	|get a list of prcess from the monitored machine|-|
 
 
