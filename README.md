@@ -3,16 +3,16 @@ midware_WinS is a midware service that can connect Osprey AIPOs and powershell f
 
 ## Components
 - midware_WinS/
-**program modules :**
+</br>**program modules :**
     - wins_main.py
     - wins_query.py
     - wins_UI.py
     - daemonize.py
-**config and log file:**
+</br>**config and log file:**
     - midware.conf
     - config.json
     - .midware.log
-**default output directory:**
+</br>**default output directory:**
     - probe/
 
 ## Usage
