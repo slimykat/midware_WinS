@@ -9,7 +9,7 @@ _Password = ""
 def query(Name, TargetObject = []):
     if (not _session):
         logging.error("please log in")
-    r = _session.run_ps("Get-Process *" + Name + "* | Format-table " + ",".join(TargetObject))
+    r = _session.run_ps("Get-Process *" + Name + "* | Format-list " + ",".join(TargetObject))
     if r.std_err :
         logging.warning("wins_query.query:"+r.std_err)
     
