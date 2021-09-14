@@ -8,17 +8,17 @@ midware_WinS is a midware service that can connect Osprey AIPOs and powershell f
 	    - wins_query.py
 	    - wins_UI.py
 	    - daemonize.py
-	- **config and log file:**
+	- **config and log file :**
 	    - midware.conf
 	    - config.json
 	    - .midware.log
-	- **default output directory:**
+	- **default output directory :**
 	    - probe/
 
 ## Usage
 
 ### 1. starting the service
-midware_WinS is designed to run under python 2 envirionment:
+midware_WinS is designed to run under python 2 envirionment :
 ```python
 assert((2, 6) <= sys.version_info < (2, 8))
 ```
@@ -26,7 +26,7 @@ Additional required package(s):
 ```shell
 $ pip install winrm;
 ```
-How to run this program:
+How to run this program :
 ```shell
 $ python wins_main.py -h
 usage: wins_main.py [-h] [options] {start,stop,restart,daemon}
@@ -47,7 +47,7 @@ optional arguments:
 ```
 
 ### 2. Systemd instruction
-Sample config:
+Sample config :
 ```.service=
 # put this file in the fallowing path
 # /usr/lib/systemd/system/Wins-midware.service

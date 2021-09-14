@@ -18,7 +18,7 @@ def query(Name, TargetObject = []):
         return ""
 
     # remove header
-    return r.std_out.split('\r\n')[3:]
+    return r
     
 def login(host="", user = "", password=""):
     
